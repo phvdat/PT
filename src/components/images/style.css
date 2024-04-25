@@ -1,0 +1,43 @@
+@keyframes zoomIn {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    45% {
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+
+    55% {
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+img {
+    aspect-ratio: 1;
+    object-fit: cover;
+    --_m: radial-gradient(#000 69%, #0000 70%) 84.5% fill/100%;
+    -webkit-mask-box-image: var(--_m);
+    mask-border: var(--_m);
+    clip-path: polygon(-41% 0, 50% 91%, 141% 0);
+    position: absolute;
+    left: 50%;
+    top: 52%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+}
+
+.transition-image {
+    opacity: 0;
+    position: absolute;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.transition-image.active {
+    opacity: 1;
+    animation: zoomIn 5s ease-in-out;
+}

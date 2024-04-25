@@ -1,22 +1,24 @@
-import { ImageType } from '@/types/common';
-import axios from 'axios';
+'use client'
+import Audio from '@/components/audio/audio';
+import { useImages } from './hooks/useImages';
+import BubbleHearts from '@/components/bubble-heart/BubbleHearts';
+import Heart from '@/components/heart/Heart';
+import styles from "./page.module.css";
+import { useState } from 'react';
+import Images from '@/components/images/Images';
 
-async function getData() {
-  try {
-    const { data, status } = await axios.get<ImageType[]>('/api/images');
-    if (status === 200) {
-      return data;
-    }
-  } catch (error) {
-    console.log(error);
-  }
-}
-export default async function Home() {
-  const data = await getData();
 
-  return (
-    <main>
-      {data ? data.map((item) => <h1 key={item._id}>{item.url}</h1>) : null}
-    </main>
+export default function Home() {
+  const [play, setPlay] = useState(false);
+  const { data } = useImages();
+
+  return (<main onClick={() => setPlay(prev => !prev)}>
+    <Audio play={play} />
+    <BubbleHearts />
+    <div className={styles.heartContainer}>
+      <Images data={data} />
+      <Heart />
+    </div>
+  </main>
   );
 }
