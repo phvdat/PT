@@ -1,14 +1,28 @@
 import { ImageType } from '@/types/common';
 import { createContext, useReducer } from 'react';
-export const ADD_IMAGE = 'ADD_IMAGE';
+
+export enum ActionTypes {
+  SET_IMAGES = 'SET_IMAGES',
+  ADD_IMAGE = 'ADD_IMAGE',
+  REMOVE_IMAGE = 'REMOVE_IMAGE',
+}
 interface IContext {
   state: IState;
   dispatch: React.Dispatch<IAction>;
 }
-interface IAction {
-  type: string;
-  payload: any;
-}
+type IAction =
+  | {
+      type: ActionTypes.SET_IMAGES;
+      payload: ImageType[];
+    }
+  | {
+      type: ActionTypes.ADD_IMAGE;
+      payload: ImageType;
+    }
+  | {
+      type: ActionTypes.REMOVE_IMAGE;
+      payload: string;
+    };
 interface IState {
   images: ImageType[];
 }
@@ -23,10 +37,20 @@ export const ConfigMediaContext = createContext<IContext>({
 
 const reducer = (state: IState, action: IAction) => {
   switch (action.type) {
-    case 'ADD_IMAGE':
+    case ActionTypes.SET_IMAGES:
       return {
         ...state,
-        images: [action.payload],
+        images: action.payload,
+      };
+    case ActionTypes.ADD_IMAGE:
+      return {
+        ...state,
+        images: [...state.images, action.payload],
+      };
+    case ActionTypes.REMOVE_IMAGE:
+      return {
+        ...state,
+        images: state.images.filter((image) => image._id !== action.payload),
       };
     default:
       return state;

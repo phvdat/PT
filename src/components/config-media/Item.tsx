@@ -2,7 +2,11 @@
 import { ImageType } from '@/types/common';
 import './style.css';
 import axios from 'axios';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import {
+  ActionTypes,
+  ConfigMediaContext,
+} from '@/context/config-media/provider';
 interface ItemProps {
   defaultValue: ImageType;
 }
@@ -10,11 +14,11 @@ const Item = ({ defaultValue }: ItemProps) => {
   const [value, setValue] = useState<string>(defaultValue.url);
   const [loading, setLoading] = useState<boolean>(false);
 
+  const { dispatch } = useContext(ConfigMediaContext);
   const handleUpdate = async (id: string, url: string) => {
     setLoading(true);
     try {
-      const { data } = await axios.put('/api/images', { _id: id, url: url });
-      console.log(data);
+      await axios.put('/api/images', { _id: id, url: url });
     } catch (error) {
       console.log(error);
     }
@@ -25,7 +29,7 @@ const Item = ({ defaultValue }: ItemProps) => {
     setLoading(true);
     try {
       const { data } = await axios.delete('/api/images', { data: { _id: id } });
-      console.log(data);
+      dispatch({ type: ActionTypes.REMOVE_IMAGE, payload: data._id });
     } catch (error) {
       console.log(error);
     }
