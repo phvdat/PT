@@ -1,16 +1,12 @@
 'use client';
-import List from '@/components/config-media/List';
-import { useImages } from '../hooks/useImages';
+import ConfigMediaProvider from '@/context/config-media/provider';
+import ConfigMedia from './ConfigMedia';
 
 const Page = () => {
-  const { data } = useImages();
-  console.log(data);
-
   return (
-    <div>
-      <h1>Config Image</h1>
-      <List data={data} />
-    </div>
+    <ConfigMediaProvider>
+      <ConfigMedia />
+    </ConfigMediaProvider>
   );
 };
 
