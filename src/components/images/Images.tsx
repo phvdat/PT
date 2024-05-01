@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react';
-import './style.css'
-import { ImageType } from '@/types/common';
+import './style.css';
+import Image from 'next/image';
 
 const INTERVAL = 5000
 
@@ -14,6 +14,8 @@ const Images = ({ data }: ImagesProps) => {
 
 
     useEffect(() => {
+        if (!data.length) return;
+        console.log(data);
         const timer = setInterval(() => {
             setIndexActive((prev) => {
                 if (prev < data.length - 1) {
@@ -23,12 +25,14 @@ const Images = ({ data }: ImagesProps) => {
             })
         }, INTERVAL)
         return () => clearInterval(timer)
-    }, [])
+    }, [data])
+
+
 
     return <>
         {data ?
             data.map((item, index) => {
-                return <img key={item} className={`transition-image ${index === indexActive ? 'active' : ''}`} src={item} alt="em pe and me" />
+                return <Image width={600} height={600} key={item} className={`transition-image ${index === indexActive ? 'active' : ''}`} src={item} alt="em pe and me" />
             })
             : null}
     </>;

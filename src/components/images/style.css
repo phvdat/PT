@@ -17,18 +17,18 @@
 }
 
 img {
+    position: absolute;
+    left: 50%;
+    top: 52%;
+    transform: translate(-50%, -50%);
+    max-width: 600px;
+    max-height: 600px;
     aspect-ratio: 1;
     object-fit: cover;
     --_m: radial-gradient(#000 69%, #0000 70%) 84.5% fill/100%;
     -webkit-mask-box-image: var(--_m);
     mask-border: var(--_m);
     clip-path: polygon(-41% 0, 50% 91%, 141% 0);
-    position: absolute;
-    left: 50%;
-    top: 52%;
-    transform: translate(-50%, -50%);
-    width: 600px;
-    height: 600px;
 }
 
 .transition-image {

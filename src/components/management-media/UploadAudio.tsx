@@ -15,7 +15,6 @@ const UploadAudio = () => {
   const getListAll = async () => {
     try {
       const res = await listAll(listRef);
-      console.log(res);
 
       const listImages = res.items.map((itemRef) => ({
         uid: itemRef.name,

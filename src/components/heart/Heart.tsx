@@ -5,7 +5,7 @@ const HeartScriptLazy = dynamic(() => import('./HeatScript'), { ssr: false });
 
 const Heart = () => {
     return <>
-        <canvas id="pinkboard" ></canvas>
+        <canvas id="pinkboard" width="686" height="616"></canvas>
         <HeartScriptLazy />
     </>
 };

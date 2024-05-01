@@ -1,13 +1,11 @@
 'use client';
 import Audio from '@/components/audio/audio';
-import { useImages } from '../hooks/useImages';
 import BubbleHearts from '@/components/bubble-heart/BubbleHearts';
 import Heart from '@/components/heart/Heart';
-import styles from './page.module.css';
-import { useEffect, useState } from 'react';
 import Images from '@/components/images/Images';
-import { ref, uploadBytes, listAll, deleteObject } from "firebase/storage";
 import { storage } from "@/lib/firebase";
+import { listAll, ref } from "firebase/storage";
+import { useEffect, useState } from 'react';
 
 export default function Home() {
   const [play, setPlay] = useState(false);
@@ -43,13 +41,15 @@ export default function Home() {
   }, []);
 
   return (
-    <main onClick={() => setPlay((prev) => !prev)}>
-      <Audio play={play} data={listAudio} />
-      <BubbleHearts />
-      <div className={styles.heartContainer}>
-        <Images data={listImages} />
-        <Heart />
-      </div>
-    </main>
+    <>
+      <main onClick={() => setPlay((prev) => !prev)}>
+        <Audio play={play} data={listAudio} />
+        <BubbleHearts />
+        <div className='container'>
+          <Images data={listImages} />
+          <Heart />
+        </div>
+      </main>
+    </>
   );
 }
