@@ -6,7 +6,7 @@ import { ImageType } from '@/types/common';
 const INTERVAL = 5000
 
 type ImagesProps = {
-    data: ImageType[]
+    data: string[]
 }
 
 const Images = ({ data }: ImagesProps) => {
@@ -28,7 +28,7 @@ const Images = ({ data }: ImagesProps) => {
     return <>
         {data ?
             data.map((item, index) => {
-                return <img key={item._id} className={`transition-image ${index === indexActive ? 'active' : ''}`} src={item.url} alt="em pe and me" />
+                return <img key={item} className={`transition-image ${index === indexActive ? 'active' : ''}`} src={item} alt="em pe and me" />
             })
             : null}
     </>;

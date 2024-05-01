@@ -2,9 +2,10 @@
 import { useEffect, useRef } from "react";
 interface AudioProps {
     play: boolean;
+    data: string[];
 }
 
-const Audio = ({ play }: AudioProps) => {
+const Audio = ({ play, data }: AudioProps) => {
     const audioRef = useRef<HTMLAudioElement>(null);
 
     useEffect(() => {
@@ -35,8 +36,11 @@ const Audio = ({ play }: AudioProps) => {
 
     return (
         <audio ref={audioRef}>
-            <source src="assets/audio/embeiu.mp3" type="audio/mp3" />
-            <source src="assets/audio/anhchuatoi.mp3" type="audio/mp3" />
+            {
+                data.map((item, index) => (
+                    <source key={index} src={item} type="audio/mp3" />
+                ))
+            }
         </audio>
     );
 }

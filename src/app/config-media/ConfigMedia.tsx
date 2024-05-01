@@ -5,7 +5,7 @@ import {
   ConfigMediaContext,
 } from '@/context/config-media/provider';
 import { useContext, useEffect } from 'react';
-import { useImages } from '../hooks/useImages';
+import { useImages } from '../../hooks/useImages';
 
 const ConfigMedia = () => {
   const { data } = useImages();
