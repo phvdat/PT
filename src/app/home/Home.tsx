@@ -1,8 +1,11 @@
 'use client';
 import Audio from '@/components/audio/audio';
 import BubbleHearts from '@/components/bubble-heart/BubbleHearts';
+import GalleryImage from '@/components/gallery-image/GalleryImage';
 import Heart from '@/components/heart/Heart';
 import Images from '@/components/images/Images';
+import { HeartFilled } from '@ant-design/icons';
+import { Button } from 'antd';
 import { useState } from 'react';
 
 interface HomeProps {
@@ -16,14 +19,20 @@ const HomePage = ({ listAudio, listImages }: HomeProps) => {
 
   return (
     <>
-      <main onClick={() => setPlay((prev) => !prev)}>
+      <div>
         <Audio play={play} data={listAudio} />
         <BubbleHearts />
-        <div className='container'>
-          <Images data={listImages} />
-          <Heart />
-        </div>
-      </main>
+        <div className='banner-conainer' onClick={() => setPlay((prev) => !prev)}>
+          <div className='banner'>
+            <Images data={listImages} />
+            <Heart />
+          </div>
+        </ div>
+        <GalleryImage images={listImages} />
+        <Button href='/management-media' >
+          <HeartFilled />
+        </Button>
+      </div>
     </>
   );
 }

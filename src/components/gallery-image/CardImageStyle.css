@@ -1,0 +1,16 @@
+.card-image {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.5s;
+  border: 10px solid #fff;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.image-gallery {
+  object-fit: contain;
+  width: 100%;
+  vertical-align: middle;
+  border-radius: 10px;
+}

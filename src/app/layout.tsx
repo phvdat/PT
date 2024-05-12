@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  initialScale: 0.5
+  initialScale: 0.4
 }
 
 export default function RootLayout({
