@@ -14,6 +14,7 @@ interface HomeProps {
 }
 
 const HomePage = ({ listAudio, listImages }: HomeProps) => {
+  const shuffledImages = listImages.sort((a, b) => 0.5 - Math.random());
   const [play, setPlay] = useState(false);
 
 
@@ -24,15 +25,15 @@ const HomePage = ({ listAudio, listImages }: HomeProps) => {
         <BubbleHearts />
         <div className='banner-conainer' onClick={() => setPlay((prev) => !prev)}>
           <div className='banner'>
-            <Images data={listImages} />
+            <Images data={shuffledImages} />
             <Heart />
           </div>
         </ div>
-        <GalleryImage images={listImages} />
-        <Button href='/management-media' >
+        <GalleryImage images={shuffledImages} />
+        <Button href='/management-media' style={{ margin: '20px' }} size='large'>
           <HeartFilled />
         </Button>
-      </div>
+      </div >
     </>
   );
 }
