@@ -17,25 +17,38 @@ const HomePage = ({ listAudio, listImages }: HomeProps) => {
   const shuffledImages = listImages.sort((a, b) => 0.5 - Math.random());
   const [play, setPlay] = useState(false);
 
-
   return (
     <>
       <div>
         <Audio play={play} data={listAudio} />
         <BubbleHearts />
-        <div className='banner-conainer' onClick={() => setPlay((prev) => !prev)}>
+        <div
+          className='banner-conainer'
+          onClick={() => setPlay((prev) => !prev)}
+        >
           <div className='banner'>
             <Images data={shuffledImages} />
             <Heart />
           </div>
-        </ div>
+        </div>
         <GalleryImage images={shuffledImages} />
-        <Button href='/management-media' style={{ margin: '20px' }} size='large'>
+        <Button
+          href='/management-media'
+          style={{ margin: '20px' }}
+          size='large'
+        >
           <HeartFilled />
         </Button>
-      </div >
+        <Button
+          href='/management-media-happy-birthday'
+          style={{ margin: '20px' }}
+          size='large'
+        >
+          <HeartFilled />
+        </Button>
+      </div>
     </>
   );
-}
+};
 
 export default HomePage;

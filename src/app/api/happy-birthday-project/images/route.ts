@@ -2,7 +2,7 @@ import { listAll, ref } from 'firebase/storage';
 import { storage } from '@/lib/firebase';
 
 export async function GET() {
-  const listRef = ref(storage, 'images');
+  const listRef = ref(storage, 'images-happy-birthday');
   const res = await listAll(listRef);
   const listImages = res.items.map(
     (itemRef) =>
